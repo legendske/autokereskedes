@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   signOut,
   User,
+  updatePassword,
 } from '@angular/fire/auth';
 
 import { Injectable } from '@angular/core';
@@ -42,4 +43,10 @@ export class AuthService {
   logout() {
     return signOut(this.auth);
   }
+
+  // updatePassword(newPassword: string) {
+  //   if (this.user) {
+  //     return updatePassword(this.user, newPassword);
+  //   }
+  // }
 }
