@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  User,
 } from '@angular/fire/auth';
 
 import { Injectable } from '@angular/core';
@@ -14,7 +15,17 @@ import { LoginData } from './auth.types';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private auth: Auth) {}
+  private user: User | null;
+
+  constructor(private auth: Auth) {
+    this.auth.onAuthStateChanged((user) => {
+      this.user = user;
+    });
+  }
+
+  get currentUser(): User | null {
+    return this.user;
+  }
 
   login({ email, password }: LoginData) {
     return signInWithEmailAndPassword(this.auth, email, password);

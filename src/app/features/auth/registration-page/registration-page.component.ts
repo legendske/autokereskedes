@@ -20,7 +20,7 @@ export class RegistrationPageComponent implements OnInit {
   register(data: LoginData) {
     this.authService
       .register(data)
-      .then(() => this.router.navigate(['/']))
+      .then(() => this.router.navigate(['/home']))
       .catch((e) => console.log(e.message));
   }
 }

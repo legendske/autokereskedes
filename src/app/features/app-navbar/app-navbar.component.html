@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <h1 class="title">MyAwesomeWebPage</h1>
+  <a mat-button routerLink="/home"> Home </a>
+  <span class="menu-spacer"></span>
+  <ng-container *ngIf="!currentUser">
+    <a mat-button routerLink="/auth/login"> Login </a>
+  </ng-container>
+  <ng-container *ngIf="currentUser">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+      {{ currentUser.email }}
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item>My ads</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </ng-container>
+</mat-toolbar>
