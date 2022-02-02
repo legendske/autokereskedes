@@ -11,6 +11,8 @@ import {
 
 import { Injectable } from '@angular/core';
 import { LoginData } from './auth.types';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -44,9 +46,12 @@ export class AuthService {
     return signOut(this.auth);
   }
 
-  // updatePassword(newPassword: string) {
-  //   if (this.user) {
-  //     return updatePassword(this.user, newPassword);
-  //   }
-  // }
+   updatePassword(newPassword: string) {
+     if (this.user) {
+       return updatePassword(this.user, newPassword);
+     }else{
+       return;
+     }
+  }
+  
 }
