@@ -1,19 +1,22 @@
 <mat-toolbar color="primary">
-  <h1 class="title">CarMarkt</h1>
-  <a mat-button routerLink="/home"> Home </a>
+  <h1 class="title">Autókereskedés</h1>
+    <a mat-button routerLink="/home"> Főoldal </a>
+    <a *ngIf="currentUser" mat-button routerLink="/user/advertisement"> Hírdetéseim </a>
+    <a *ngIf="currentUser" mat-raised-button color="accent" (click)="openDialog()"><mat-icon>add_circle_outline</mat-icon> Hírdetésfeladás </a>
   <span class="menu-spacer"></span>
   <ng-container *ngIf="!currentUser">
-    <a mat-button routerLink="/auth/login"> Login </a>
+    <a mat-button routerLink="/auth/login"> Bejelentkezés </a>
   </ng-container>
   <ng-container *ngIf="currentUser">
     <button mat-button [matMenuTriggerFor]="menu">
       <mat-icon>account_circle</mat-icon>
-      {{ currentUser.email }}
+      {{ currentUser.displayName || currentUser.email }}
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/user/profile">Profile</button>
-      <button mat-menu-item>My ads</button>
-      <button mat-menu-item (click)="logout()">Logout</button>
+      <button mat-menu-item routerLink="/user/profile"><mat-icon>account_circle</mat-icon>Profilom</button>
+      <button mat-menu-item routerLink="/user/advertisement"><mat-icon>list</mat-icon>Hírdetéseim</button>
+      <button mat-menu-item (click)="openDialog()"><mat-icon>library_add</mat-icon>Hírdetésfeladás</button>
+      <button mat-menu-item (click)="logout()"><mat-icon>power_off</mat-icon>Kijelentkezés</button>
     </mat-menu>
   </ng-container>
 </mat-toolbar>

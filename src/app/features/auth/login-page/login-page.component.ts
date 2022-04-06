@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import { LoginData } from '../auth.types';
 
 @Component({
@@ -17,14 +17,14 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  login(loginData: LoginData) {
+  login(loginData: LoginData): void {
     this.authService
       .login(loginData)
       .then(() => this.router.navigate(['/home']))
       .catch((e) => console.log(e.message));
   }
 
-  loginWithGoogle() {
+  loginWithGoogle(): void {
     this.authService
       .loginWithGoogle()
       .then(() => this.router.navigate(['/home']))

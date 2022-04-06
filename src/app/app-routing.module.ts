@@ -28,6 +28,12 @@ const routes: Routes = [
     ...canActivate(redirectUnauthorizedToLogin),
   },
   {
+    path: 'user',
+    loadChildren: () =>
+      import('./features/advertisement/advertisement.module').then((m) => m.AdvertisementModule),
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full',
